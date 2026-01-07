@@ -1,22 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ChevronRight, Code, Zap, Box, Download } from "lucide-react";
 import { SceneCanvas } from "./SceneCanvas";
 
 export default function App() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [showCode, setShowCode] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: -(e.clientY / window.innerHeight) * 2 + 1,
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   const codeSnippet = `import { Scene } from './Scene';
 import { Canvas } from '@react-three/fiber';
@@ -161,8 +148,8 @@ export function App() {
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/10 to-black/60 z-10 pointer-events-none" />
 
             {/* Main Canvas */}
-            <div className="absolute inset-0 rounded-3xl overflow-hidden">
-              <SceneCanvas mouseX={mousePos.x} mouseY={mousePos.y} />
+              <div className="absolute inset-0 rounded-3xl overflow-hidden">
+              <SceneCanvas />
             </div>
 
             {/* Glow effects */}
