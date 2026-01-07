@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# SceneForge — Design 3D Scenes for React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SceneForge is an early-stage, open-source design tool that helps React developers create simple 3D scenes visually and export clean, editable React Three Fiber JSX.
 
-Currently, two official plugins are available:
+This repository contains the **landing website** for SceneForge — an introduction to the idea, workflow, and philosophy behind the project.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## What is SceneForge?
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+If you’ve ever tried adding a bit of 3D to a React app, you’ve probably felt the friction:
 
-## Expanding the ESLint configuration
+- Blender is powerful, but often overkill for basic web scenes
+- Writing positions, rotations, and scales by hand is tedious
+- Translating design intent into JSX is slow
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+SceneForge exists to reduce that friction.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+It is **not** a 3D engine.
+It is **not** a full modeling tool.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+It’s a small, focused helper that fits naturally into a modern React + Three.js workflow.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## What this site shows
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- A live 3D preview rendered with React Three Fiber
+- Example JSX output generated from a visual scene
+- The core value proposition of SceneForge
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This site does **not** contain the full editor itself.
+
+---
+
+## The Editor
+
+The SceneForge editor allows you to:
+
+- Place basic 3D primitives visually
+- Adjust transforms (position, rotation, scale)
+- Export readable, deterministic JSX
+- Paste the output directly into your React app
+
+You can access the editor here:
+
+👉 **[Launch the SceneForge Editor](LINK_TO_EDITOR)**
+
+---
+## Status
+
+SceneForge is an **early prototype** under active development.
+
+APIs, UI, and exported output may change as the project evolves.
+
+---
+
+## License
+
+MIT License
