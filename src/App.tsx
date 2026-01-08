@@ -103,12 +103,18 @@ export default function App() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-5">
-            <button className="group relative px-14 py-7 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl font-black text-xl hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-500 shadow-2xl shadow-blue-500/50 hover:shadow-purple-500/60 hover:scale-110 transform overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-purple-600/0 to-pink-600/0 group-hover:from-blue-600/10 group-hover:via-purple-600/10 group-hover:to-pink-600/10 transition-all duration-500" />
-              <span className="relative z-10">
-                Try SceneForge Free - Create your own 3D Scene
-              </span>
-            </button>
+            <a
+              href="https://sceneforge-six.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="group relative px-14 py-7 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl font-black text-xl hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-500 shadow-2xl shadow-blue-500/50 hover:shadow-purple-500/60 hover:scale-110 transform overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-purple-600/0 to-pink-600/0 group-hover:from-blue-600/10 group-hover:via-purple-600/10 group-hover:to-pink-600/10 transition-all duration-500" />
+                <span className="relative z-10">
+                  Try SceneForge Free - Create your own 3D Scene
+                </span>
+              </button>
+            </a>
           </div>
         </div>
 
@@ -204,15 +210,27 @@ export default function App() {
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap justify-center gap-6 pt-8">
-                <button className="group relative px-14 py-7 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl font-black text-xl hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-500 shadow-2xl shadow-blue-500/50 hover:shadow-purple-500/60 hover:scale-110 transform overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
-                  <span className="relative z-10">Try SceneForge Free</span>
-                </button>
+                <a
+                  href="https://sceneforge-six.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="group relative px-14 py-7 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl font-black text-xl hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-500 shadow-2xl shadow-blue-500/50 hover:shadow-purple-500/60 hover:scale-110 transform overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+                    <span className="relative z-10">Try SceneForge Free</span>
+                  </button>
+                </a>
 
-                <button className="group relative px-14 py-7 border-2 border-slate-600 rounded-2xl font-black text-xl hover:border-blue-400 transition-all duration-500 backdrop-blur-xl hover:scale-110 transform shadow-xl hover:shadow-2xl hover:shadow-blue-500/40 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-purple-600/0 to-pink-600/0 group-hover:from-blue-600/20 group-hover:via-purple-600/20 group-hover:to-pink-600/20 transition-all duration-500" />
-                  <span className="relative z-10">View Documentation</span>
-                </button>
+                <a
+                  href="https://github.com/1-apex/sceneforge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="group relative px-14 py-7 border-2 border-slate-600 rounded-2xl font-black text-xl hover:border-blue-400 transition-all duration-500 backdrop-blur-xl hover:scale-110 transform shadow-xl hover:shadow-2xl hover:shadow-blue-500/40 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-purple-600/0 to-pink-600/0 group-hover:from-blue-600/20 group-hover:via-purple-600/20 group-hover:to-pink-600/20 transition-all duration-500" />
+                    <span className="relative z-10">View Documentation</span>
+                  </button>
+                </a>
               </div>
             </div>
           </div>
