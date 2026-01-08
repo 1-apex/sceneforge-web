@@ -44,7 +44,7 @@ The SceneForge editor allows you to:
 
 You can access the editor here:
 
-👉 **[Launch the SceneForge Editor](LINK_TO_EDITOR)**
+👉 **[Launch the SceneForge Editor](https://sceneforge-six.vercel.app/)**
 
 ---
 ## Status
