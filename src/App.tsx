@@ -1,24 +1,25 @@
-import { useState } from "react";
-import { ChevronRight, Code, Zap, Box, Download } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Code, Zap, Box } from "lucide-react";
 import { SceneCanvas } from "./SceneCanvas";
 
 export default function App() {
-  const [showCode, setShowCode] = useState(false);
+  const heroRef = useRef(null);
+  const [showHint, setShowHint] = useState(true);
 
-  const codeSnippet = `import { Scene } from './Scene';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowHint(entry.isIntersecting);
+      },
+      {
+        threshold: 0.4, // tweak: lower = hides earlier
+      }
+    );
 
-export function App() {
-  return (
-    <Canvas>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 10]} />
-      <OrbitControls />
-      <Scene />
-    </Canvas>
-  );
-}`;
+    if (heroRef.current) observer.observe(heroRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   const features = [
     {
@@ -56,7 +57,10 @@ export function App() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen grid lg:grid-cols-2 items-center gap-12 px-6 lg:px-12">
+      <section
+        ref={heroRef}
+        className="relative min-h-screen grid lg:grid-cols-2 items-center gap-12 px-6 lg:px-12"
+      >
         {/* Left Content */}
         <div className="relative z-10 space-y-10 max-w-3xl mx-auto lg:mx-0 py-20">
           <div className="space-y-8">
@@ -99,45 +103,13 @@ export function App() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-5">
-            <button
-              onClick={() => setShowCode(!showCode)}
-              className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl font-bold text-lg hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-500 flex items-center gap-3 shadow-2xl shadow-blue-500/50 hover:shadow-purple-500/60 hover:scale-105 transform overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
-              <Code size={22} className="relative z-10" />
-              <span className="relative z-10">View Code</span>
-              <ChevronRight
-                size={22}
-                className="relative z-10 group-hover:translate-x-2 transition-transform duration-300"
-              />
-            </button>
-
-            <button className="group relative px-10 py-5 border-2 border-slate-700 rounded-2xl font-bold text-lg hover:border-blue-400 transition-all duration-500 flex items-center gap-3 backdrop-blur-xl hover:scale-105 transform shadow-xl hover:shadow-2xl hover:shadow-blue-500/30 overflow-hidden">
+            <button className="group relative px-14 py-7 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl font-black text-xl hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-500 shadow-2xl shadow-blue-500/50 hover:shadow-purple-500/60 hover:scale-110 transform overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-purple-600/0 to-pink-600/0 group-hover:from-blue-600/10 group-hover:via-purple-600/10 group-hover:to-pink-600/10 transition-all duration-500" />
-              <Download size={22} className="relative z-10" />
-              <span className="relative z-10">Download Component</span>
+              <span className="relative z-10">
+                Try SceneForge Free - Create your own 3D Scene
+              </span>
             </button>
           </div>
-
-          {/* Code Preview */}
-          {showCode && (
-            <div className="mt-10 p-8 bg-gradient-to-br from-slate-950/95 via-slate-900/95 to-slate-950/95 backdrop-blur-2xl border border-blue-500/20 rounded-3xl shadow-2xl shadow-blue-500/30 animate-in slide-in-from-bottom duration-500">
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-base text-blue-300 font-mono flex items-center gap-3 font-semibold">
-                  <div className="p-2 bg-blue-500/10 rounded-lg">
-                    <Code size={18} />
-                  </div>
-                  Scene.tsx
-                </span>
-                <button className="px-5 py-2.5 text-sm text-blue-400 hover:text-blue-300 border border-blue-500/30 rounded-xl hover:bg-blue-500/10 transition-all duration-300 font-semibold hover:scale-105 transform">
-                  Copy Code
-                </button>
-              </div>
-              <pre className="text-sm text-slate-300 overflow-x-auto bg-black/40 p-6 rounded-2xl border border-slate-800/50 font-mono leading-relaxed">
-                <code>{codeSnippet}</code>
-              </pre>
-            </div>
-          )}
         </div>
 
         {/* Right 3D Canvas - MUCH LARGER */}
@@ -148,7 +120,7 @@ export function App() {
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/10 to-black/60 z-10 pointer-events-none" />
 
             {/* Main Canvas */}
-              <div className="absolute inset-0 rounded-3xl overflow-hidden">
+            <div className="absolute inset-0 rounded-3xl overflow-hidden">
               <SceneCanvas />
             </div>
 
@@ -226,10 +198,7 @@ export function App() {
                 Building?
               </h2>
               <p className="text-2xl lg:text-3xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-                Join{" "}
-                <span className="text-blue-400 font-bold">
-                  thousands of developers
-                </span>{" "}
+                Be <span className="text-blue-400 font-bold">a developer</span>{" "}
                 creating next-generation web experiences
               </p>
 
@@ -245,44 +214,32 @@ export function App() {
                   <span className="relative z-10">View Documentation</span>
                 </button>
               </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-12 max-w-3xl mx-auto">
-                <div className="space-y-2">
-                  <div className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    10K+
-                  </div>
-                  <div className="text-slate-400 font-semibold">Developers</div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    50K+
-                  </div>
-                  <div className="text-slate-400 font-semibold">
-                    Scenes Created
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
-                    99.9%
-                  </div>
-                  <div className="text-slate-400 font-semibold">Uptime</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Floating interaction hint */}
-      <div className="fixed bottom-8 right-8 px-8 py-4 bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-2xl border border-blue-500/30 rounded-2xl text-base text-slate-300 shadow-2xl shadow-blue-500/30 hover:scale-105 transition-transform duration-300">
+      <div
+        className={`fixed bottom-8 right-8 px-8 py-4
+    bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-slate-900/95
+    backdrop-blur-2xl border border-blue-500/30 rounded-2xl text-base text-slate-300
+    shadow-2xl shadow-blue-500/30
+    transition-all duration-500
+    ${
+      showHint
+        ? "opacity-100 scale-100"
+        : "opacity-0 scale-95 pointer-events-none"
+    }
+  `}
+      >
         <span className="flex items-center gap-3 font-semibold">
           <span className="relative flex h-3 w-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500 shadow-lg shadow-blue-500/50"></span>
           </span>
           <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Drag to rotate • Hover to interact
+            Drag to rotate
           </span>
         </span>
       </div>
