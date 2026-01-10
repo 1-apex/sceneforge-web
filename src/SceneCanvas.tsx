@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { Scene } from "./Scene";
@@ -13,8 +14,12 @@ export function SceneCanvas() {
         gl={{
           antialias: true,
           alpha: true,
-          toneMapping: THREE.ReinhardToneMapping,
-          toneMappingExposure: 1.4,
+          powerPreference: "high-performance",
+        }}
+        onCreated={({ gl }) => {
+          gl.toneMapping = THREE.ACESFilmicToneMapping;
+          gl.toneMappingExposure = 1.1;
+          gl.outputColorSpace = THREE.SRGBColorSpace;
         }}
       >
         {/* Ambient base */}
@@ -25,7 +30,6 @@ export function SceneCanvas() {
           position={[12, 15, 8]}
           intensity={2.2}
           color="#93c5fd"
-          castShadow
           shadow-mapSize={[2048, 2048]}
         />
 
@@ -46,7 +50,10 @@ export function SceneCanvas() {
         />
 
         {/* Reflections */}
-        <Environment preset="city" environmentIntensity={0.4} />
+        <Suspense fallback={null}>
+          <Environment preset="city" environmentIntensity={0.35} />
+        </Suspense>
+
 
         {/* Controls */}
         <OrbitControls

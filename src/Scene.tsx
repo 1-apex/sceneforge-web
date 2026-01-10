@@ -5,26 +5,10 @@
  * Usage: Import this component into your React Three Fiber Canvas.
  */
 import { Float } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-import { Group } from "three";
-
-function RotatingGroup({ children }: { children: React.ReactNode }) {
-  const ref = useRef<Group | null>(null);
-
-  useFrame((_, delta) => {
-    if (!ref.current) return;
-    ref.current.rotation.y += delta * 0.16;
-  });
-
-  return <group ref={ref}>{children}</group>;
-}
-
 
 export function Scene() {
   return (
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
-      <RotatingGroup>
       <mesh
         position={[5, 0, 0]}
         rotation={[0, 0, -0.524]}
@@ -66,7 +50,6 @@ export function Scene() {
           roughness={0.1}
         />
       </mesh>
-        </RotatingGroup>
     </Float>
   );
 }
