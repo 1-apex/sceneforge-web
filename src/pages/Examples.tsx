@@ -7,6 +7,12 @@ const EXAMPLES = [
     href: "/examples/rubik",
     tag: "Portfolio",
   },
+  {
+    title: "Alphabet Carousel",
+    desc: "A cinematic 3D carousel featuring metallic, floating typography driven by scroll.",
+    href: "/examples/alphabet",
+    tag: "Showcase",
+  },
 ]
 
 export default function Examples() {
