@@ -1,16 +1,11 @@
-import { useRef, useMemo } from 'react'
+import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { Text, RoundedBox, Float, Environment } from '@react-three/drei'
+import { Text, RoundedBox, Environment } from '@react-three/drei'
 import * as THREE from 'three'
 
 // Data: A-Z
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
 const SPACING = 2.5 // Distance between cubes
-const VISIBLE_RANGE = 8 // How many visible on sides
-
-function clamp(v: number, min: number, max: number) {
-    return Math.max(min, Math.min(max, v))
-}
 
 function damp(current: number, target: number, lambda: number, dt: number) {
     return THREE.MathUtils.damp(current, target, lambda, dt)
@@ -57,7 +52,6 @@ export function Scene({ scrollProgress }: { scrollProgress: number }) {
 
             // Calculate scale based on distance (Gaussian-ish bell curve)
             // Peak at 1.0 (or slightly larger), fall off to 0.6
-            const scaleBase = 1.0
             const falloff = 0.35 // How quickly it shrinks
             // e^(-x^2)
             let scale = 0.6 + 0.9 * Math.exp(-((dist * falloff) ** 2))
@@ -85,7 +79,7 @@ export function Scene({ scrollProgress }: { scrollProgress: number }) {
             if (material) {
                 // Highlight center: brighter, more metallic
                 // Side: deeper color, rougher?
-                const proximity = Math.max(0, 1 - dist / 5) // 0..1 (1 is center)
+                // const proximity = Math.max(0, 1 - dist / 5) // 0..1 (1 is center)
 
                 // Color interpolation
                 // Center: #9d4ad9 (Purple) -> Side: 
