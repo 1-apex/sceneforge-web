@@ -1,6 +1,9 @@
-import { useRef } from "react";
+import { useRef, lazy, Suspense } from "react";
 import { Code, Zap, Box, ArrowRight, Github } from "lucide-react";
-import { SceneCanvas } from "./SceneCanvas";
+
+const SceneCanvas = lazy(() =>
+  import("./SceneCanvas").then((m) => ({ default: m.SceneCanvas }))
+);
 
 export default function Landing() {
   const heroRef = useRef(null);
@@ -96,7 +99,9 @@ export default function Landing() {
                     Also wrapping allows us to control the "floating" feel better.
                 */}
               <div className="relative w-full h-full [mask-image:radial-gradient(circle_at_center,black_40%,transparent_70%)]">
-                <SceneCanvas />
+                <Suspense fallback={null}>
+                  <SceneCanvas />
+                </Suspense>
               </div>
 
               {/* Decorative circle behind */}
